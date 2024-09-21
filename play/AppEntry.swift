@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct playApp: App {
+struct AppEntry: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            FoodListScreen()
+
         }
     }
 }

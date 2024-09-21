@@ -27,7 +27,7 @@ private extension TextField where Label == Text {
     }
 }
 
-extension FoodListView {
+extension FoodListScreen {
     struct FoodForm: View {
         @State var food: Food
         @Environment(\.dismiss) var dismiss
@@ -136,5 +136,5 @@ extension FoodListView {
 }
 
 #Preview {
-    FoodListView.FoodForm(food: Food.example.randomElement()!) { _ in }
+    FoodListScreen.FoodForm(food: Food.example.randomElement()!) { _ in }
 }

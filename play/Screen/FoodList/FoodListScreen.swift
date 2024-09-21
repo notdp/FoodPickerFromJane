@@ -7,35 +7,8 @@
 
 import SwiftUI
 
-private enum Sheet:View,Identifiable{
-    case newFood((Food) -> Void)
-    case editFood(Binding<Food>)
-    case foodDetail(Food)
-    
-    var id:UUID {
-        switch self {
-        case .newFood(_) :
-            return UUID()
-        case .editFood(let binding):
-            return binding.wrappedValue.id
-        case .foodDetail(let food):
-            return food.id
-        }
-    }
-    
-    var body:some View {
-        switch self {
-        case .newFood(let onSubmit):
-            FoodListView.FoodForm(food:.new,onSubmit:onSubmit)
-        case .editFood(let binding):
-            FoodListView.FoodForm(food:binding.wrappedValue) { binding.wrappedValue = $0}
-        case .foodDetail(let food):
-            FoodListView.FoodDetailSheet(food:food)
-        }
-    }
-}
 
-struct FoodListView: View {
+struct FoodListScreen: View {
     @Environment(\.editMode) var editMode
     
     @State private var foods = Food.example
@@ -58,57 +31,6 @@ struct FoodListView: View {
         .background(.groupBg)
         .safeAreaInset(edge: .bottom, content: buildFlowButton)
         .sheet(item: $sheet) { $0 }
-        
-        
-    }
-    
-    
-}
-
-extension FoodListView {
-    struct FoodDetailSheetHeightKey: PreferenceKey {
-        static var defaultValue: CGFloat = 10
-        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-            value = nextValue()
-        }
-    }
-    
-    struct FoodDetailSheet: View {
-        @Environment(\.dynamicTypeSize) private var textSize
-        @State private var sheetHeight: CGFloat = FoodDetailSheetHeightKey.defaultValue
-        
-        let food:Food
-        
-        var body: some View {
-            let shouldVStack = textSize.isAccessibilitySize || food.image.count > 1
-            AnyLayout.useVStack(condition: shouldVStack, spacing: 30) {
-                Text(food.image).font(.system(size: 100))
-                Grid(horizontalSpacing: 20, verticalSpacing: 10) {
-                    buildNutritionView(title: "热量", value: food.$calorie)
-                    buildNutritionView(title: "蛋白质", value: food.$protein)
-                    buildNutritionView(title: "脂肪", value: food.$fat)
-                    buildNutritionView(title: "碳水", value: food.$carb)
-                }
-            }
-            .padding()
-            .padding(.vertical)
-            .overlay {
-                GeometryReader { proxy in
-                    Color.clear.preference(key: FoodDetailSheetHeightKey.self, value: proxy.size.height)
-                }
-            }
-            .onPreferenceChange(FoodDetailSheetHeightKey.self) {
-                sheetHeight = $0
-            }
-            .presentationDetents([.height(sheetHeight)])
-        }
-        
-        func buildNutritionView(title: String, value: String) -> some View {
-            GridRow {
-                Text(title).gridCellAnchor(.leading)
-                Text(value).gridCellAnchor(.trailing)
-            }
-        }
     }
     
     var titleBar: some View {
@@ -190,8 +112,12 @@ extension FoodListView {
             }
         }
     }
+
+    
+    
 }
 
+
 #Preview {
-    FoodListView()
+    FoodListScreen()
 }

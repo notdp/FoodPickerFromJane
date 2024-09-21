@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct FoodPickerScreen: View {
     @State private var selectedFood: Food?
     @State private var shouldShowInfo: Bool = false
 
@@ -39,7 +39,7 @@ struct ContentView: View {
     }
 }
 
-private extension ContentView {
+private extension FoodPickerScreen {
     var foodImage: some View {
         Group {
             if let selectedFood {
@@ -78,8 +78,8 @@ private extension ContentView {
             if shouldShowInfo {
                 Grid(horizontalSpacing: 20, verticalSpacing: 10) {
                     GridRow {
-                        Text("蛋白质~")
-                        Text("脂肪~")
+                        Text("蛋白质")
+                        Text("脂肪")
                         Text("碳水")
                     }.frame(minWidth: 60)
 
@@ -142,5 +142,5 @@ private extension ContentView {
 }
 
 #Preview {
-    ContentView(selectedFood: .example.first!)
+    FoodPickerScreen(selectedFood: .example.first!)
 }
