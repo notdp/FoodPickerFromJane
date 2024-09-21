@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  FoodPickerScreen.swift
 //  play
 //
 //  Created by dp on 9/2/24.
@@ -67,7 +67,7 @@ private extension FoodPickerScreen {
             Button {
                 shouldShowInfo.toggle()
             } label: {
-                Image(systemName: "info.circle")
+                Image(systemName: .info)
                     .foregroundColor(.secondary)
             }.buttonStyle(.plain)
         }
@@ -101,7 +101,7 @@ private extension FoodPickerScreen {
                 .transition(.moveUpWithOpacity)
             }
         }
-        .frame(maxWidth: .infinity)
+        .maxWidth()
         .clipped()
     }
 

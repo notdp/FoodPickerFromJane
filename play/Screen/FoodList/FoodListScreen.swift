@@ -1,12 +1,11 @@
 //
-//  FoodListView.swift
+//  FoodListScreen.swift
 //  play
 //
 //  Created by dp on 9/16/24.
 //
 
 import SwiftUI
-
 
 struct FoodListScreen: View {
     @Environment(\.editMode) var editMode
@@ -17,28 +16,27 @@ struct FoodListScreen: View {
     
     var isEditing: Bool { editMode?.wrappedValue == .active }
     
-    
-    @State private var sheet:Sheet?
+    @State private var sheet: Sheet?
     
     var body: some View {
         VStack(alignment: .leading) {
             titleBar // 这里使用 titleBar
             
-            List($foods, editActions: .all, selection: $selectedFoodIds,rowContent: buildFoodRow)
+            List($foods, editActions: .all, selection: $selectedFoodIds, rowContent: buildFoodRow)
                 .listStyle(.plain)
                 .padding(.horizontal)
         }
         .background(.groupBg)
         .safeAreaInset(edge: .bottom, content: buildFlowButton)
-        .sheet(item: $sheet) { $0 }
+        .sheet(item: $sheet)
     }
     
     var titleBar: some View {
         HStack {
-            Label("食物清单", systemImage: "fork.knife")
+            Label("食物清单", systemImage: .forkAndKnife)
                 .font(.title.bold())
                 .foregroundColor(.accentColor)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .push(to: .leading)
             
             EditButton()
                 .buttonStyle(.bordered)
@@ -49,9 +47,9 @@ struct FoodListScreen: View {
     
     var addButton: some View {
         Button {
-            sheet = .newFood { foods.append($0)}
+            sheet = .newFood { foods.append($0) }
         } label: {
-            Image(systemName: "plus.circle.fill")
+            Image(systemName: .plus)
                 .font(.system(size: 50))
                 .padding()
                 .symbolRenderingMode(.palette)
@@ -67,7 +65,7 @@ struct FoodListScreen: View {
         } label: {
             Text("删除已选项目")
                 .font(.title2.bold())
-                .frame(maxWidth: .infinity, alignment: .center)
+                .maxWidth()
         }
         .mainButtonStyle(shape: .roundedRectangle(radius: 8))
     }
@@ -78,32 +76,34 @@ struct FoodListScreen: View {
                 .transition(.move(edge: .leading).combined(with: .opacity).animation(.easeInOut))
                 .opacity(isEditing ? 1 : 0)
                 .id(isEditing)
-            HStack {
-                Spacer()
-                addButton
-                    .scaleEffect(isEditing ? 0 : 1)
-                    .opacity(isEditing ? 0 : 1)
-                    .animation(.easeInOut, value: isEditing)
-                    .id(isEditing)
-            }
+            
+            
+            addButton
+                .scaleEffect(isEditing ? 0 : 1)
+                .opacity(isEditing ? 0 : 1)
+                .animation(.easeInOut, value: isEditing)
+                .push(to: .trailing)
+                .id(isEditing)
+            
         }
     }
     
-    func buildFoodRow(foodBinding:Binding<Food>) -> some View {
+    func buildFoodRow(foodBinding: Binding<Food>) -> some View {
         let food = foodBinding.wrappedValue
         return HStack {
             Text(food.name).padding(.vertical, 10)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .push(to: .leading)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     if isEditing {
                         selectedFoodIds.insert(food.id)
-                        return }
+                        return
+                    }
                     sheet = .foodDetail(food)
                 }
             
             if isEditing {
-                Image(systemName: "pencil")
+                Image(systemName: .pencil)
                     .font(.title2.bold())
                     .foregroundColor(.accentColor)
                     .onTapGesture {
@@ -112,11 +112,8 @@ struct FoodListScreen: View {
             }
         }
     }
-
-    
     
 }
-
 
 #Preview {
     FoodListScreen()

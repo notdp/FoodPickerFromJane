@@ -33,11 +33,7 @@ extension FoodListScreen {
             }
             .padding()
             .padding(.vertical)
-            .overlay {
-                GeometryReader { proxy in
-                    Color.clear.preference(key: FoodDetailSheetHeightKey.self, value: proxy.size.height)
-                }
-            }
+            .readGeometry(key: FoodDetailSheetHeightKey.self, keyPath: \.size.height)
             .onPreferenceChange(FoodDetailSheetHeightKey.self) {
                 sheetHeight = $0
             }
