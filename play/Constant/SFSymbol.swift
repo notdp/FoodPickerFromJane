@@ -7,13 +7,18 @@
 import SwiftUI
 
 enum SFSymbol: String {
+    case pencil
     case plus = "plus.circle.fill"
     case chevronUp = "chevron.up"
     case chevronDown = "chevron.down"
     case xmark = "xmark.circle.fill"
     case forkAndKnife = "fork.knife"
     case info = "info.circle.fill"
-    case pencil
+    case moon = "moon.fill"
+    case unitSign = "numbersign"
+    case house = "house.fill"
+    case list = "list.bullet"
+    case gear = "gearshape"
 }
 
 extension Label where Title == Text, Icon == Image {

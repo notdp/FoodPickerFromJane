@@ -13,13 +13,13 @@ extension FoodListScreen {
             value = nextValue()
         }
     }
-    
+
     struct FoodDetailSheet: View {
         @Environment(\.dynamicTypeSize) private var textSize
         @State private var sheetHeight: CGFloat = FoodDetailSheetHeightKey.defaultValue
-        
-        let food:Food
-        
+
+        let food: Food
+
         var body: some View {
             let shouldVStack = textSize.isAccessibilitySize || food.image.count > 1
             AnyLayout.useVStack(condition: shouldVStack, spacing: 30) {
@@ -33,13 +33,15 @@ extension FoodListScreen {
             }
             .padding()
             .padding(.vertical)
+            .maxWidth()
+            .background(.groupBg2)
             .readGeometry(key: FoodDetailSheetHeightKey.self, keyPath: \.size.height)
             .onPreferenceChange(FoodDetailSheetHeightKey.self) {
                 sheetHeight = $0
             }
             .presentationDetents([.height(sheetHeight)])
         }
-        
+
         func buildNutritionView(title: String, value: String) -> some View {
             GridRow {
                 Text(title).gridCellAnchor(.leading)
@@ -47,5 +49,4 @@ extension FoodListScreen {
             }
         }
     }
-    
 }

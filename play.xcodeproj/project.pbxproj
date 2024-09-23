@@ -12,6 +12,7 @@
 		F12459F82C9F385F00B21B9D /* ShapeStyle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12459F72C9F385900B21B9D /* ShapeStyle+.swift */; };
 		F12459FB2C9F388700B21B9D /* AnyTransition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12459FA2C9F388100B21B9D /* AnyTransition+.swift */; };
 		F12459FD2C9F38BC00B21B9D /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12459FC2C9F38B900B21B9D /* View+.swift */; };
+		F1245A002C9FCA2F00B21B9D /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12459FF2C9FCA2800B21B9D /* HomeScreen.swift */; };
 		F13FC1E02C859CC7003EEBF7 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FC1DF2C859CC7003EEBF7 /* AppEntry.swift */; };
 		F13FC1E22C859CC7003EEBF7 /* FoodPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FC1E12C859CC7003EEBF7 /* FoodPickerScreen.swift */; };
 		F13FC1E42C859CC9003EEBF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F13FC1E32C859CC9003EEBF7 /* Assets.xcassets */; };
@@ -20,6 +21,10 @@
 		F16F61732C9F21B7005CF9AD /* FoodDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F61722C9F21AE005CF9AD /* FoodDetailSheet.swift */; };
 		F16F61752C9F23E1005CF9AD /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F61742C9F23E1005CF9AD /* Sheet.swift */; };
 		F16F61782C9F26E4005CF9AD /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F61772C9F26DF005CF9AD /* SFSymbol.swift */; };
+		F190A3ED2CA1A81800486801 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F190A3EC2CA1A81300486801 /* SettingScreen.swift */; };
+		F190A3EF2CA1B49600486801 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F190A3EE2CA1B49300486801 /* Unit.swift */; };
+		F190A3F12CA1B4E800486801 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F190A3F02CA1B4E100486801 /* UserDefaultsKey.swift */; };
+		F190A3F52CA1B57700486801 /* AppStorage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F190A3F42CA1B56E00486801 /* AppStorage+.swift */; };
 		F1DE4BCE2C96C02000FD20BA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE4BCD2C96C02000FD20BA /* Food.swift */; };
 		F1DE4BD42C96EB6C00FD20BA /* SuffixWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE4BD32C96EB6C00FD20BA /* SuffixWrapper.swift */; };
 		F1DE4BF22C98136100FD20BA /* FoodListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE4BF12C98136100FD20BA /* FoodListScreen.swift */; };
@@ -31,6 +36,7 @@
 		F12459F72C9F385900B21B9D /* ShapeStyle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+.swift"; sourceTree = "<group>"; };
 		F12459FA2C9F388100B21B9D /* AnyTransition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+.swift"; sourceTree = "<group>"; };
 		F12459FC2C9F38B900B21B9D /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		F12459FF2C9FCA2800B21B9D /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		F13FC1DC2C859CC7003EEBF7 /* play.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = play.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F13FC1DF2C859CC7003EEBF7 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		F13FC1E12C859CC7003EEBF7 /* FoodPickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPickerScreen.swift; sourceTree = "<group>"; };
@@ -41,6 +47,10 @@
 		F16F61722C9F21AE005CF9AD /* FoodDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailSheet.swift; sourceTree = "<group>"; };
 		F16F61742C9F23E1005CF9AD /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 		F16F61772C9F26DF005CF9AD /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
+		F190A3EC2CA1A81300486801 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
+		F190A3EE2CA1B49300486801 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		F190A3F02CA1B4E100486801 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
+		F190A3F42CA1B56E00486801 /* AppStorage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStorage+.swift"; sourceTree = "<group>"; };
 		F1DE4BCD2C96C02000FD20BA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		F1DE4BD32C96EB6C00FD20BA /* SuffixWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixWrapper.swift; sourceTree = "<group>"; };
 		F1DE4BF12C98136100FD20BA /* FoodListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListScreen.swift; sourceTree = "<group>"; };
@@ -76,11 +86,11 @@
 		F13FC1DE2C859CC7003EEBF7 /* play */ = {
 			isa = PBXGroup;
 			children = (
-				F16F61762C9F26D0005CF9AD /* Constant */,
 				F13FC1DF2C859CC7003EEBF7 /* AppEntry.swift */,
 				F16F616A2C9F1F7E005CF9AD /* Screen */,
 				F16F616B2C9F1F9F005CF9AD /* Model */,
 				F16F616C2C9F1FB5005CF9AD /* Extension */,
+				F16F61762C9F26D0005CF9AD /* Constant */,
 				F16F616E2C9F2050005CF9AD /* Utils */,
 				F16F616D2C9F1FE3005CF9AD /* Resource */,
 				F13FC1E82C859CC9003EEBF7 /* play.entitlements */,
@@ -100,6 +110,8 @@
 		F16F616A2C9F1F7E005CF9AD /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				F12459FF2C9FCA2800B21B9D /* HomeScreen.swift */,
+				F190A3EC2CA1A81300486801 /* SettingScreen.swift */,
 				F16F61702C9F2065005CF9AD /* FoodPicker */,
 				F16F616F2C9F205D005CF9AD /* FoodList */,
 			);
@@ -117,6 +129,7 @@
 		F16F616C2C9F1FB5005CF9AD /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F190A3F42CA1B56E00486801 /* AppStorage+.swift */,
 				F12459FC2C9F38B900B21B9D /* View+.swift */,
 				F12459FA2C9F388100B21B9D /* AnyTransition+.swift */,
 				F12459F72C9F385900B21B9D /* ShapeStyle+.swift */,
@@ -172,6 +185,8 @@
 		F16F61762C9F26D0005CF9AD /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				F190A3F02CA1B4E100486801 /* UserDefaultsKey.swift */,
+				F190A3EE2CA1B49300486801 /* Unit.swift */,
 				F16F61772C9F26DF005CF9AD /* SFSymbol.swift */,
 			);
 			path = Constant;
@@ -251,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F190A3F12CA1B4E800486801 /* UserDefaultsKey.swift in Sources */,
 				F12459F42C9F37F300B21B9D /* Animation+.swift in Sources */,
 				F12459FB2C9F388700B21B9D /* AnyTransition+.swift in Sources */,
 				F1DE4BD42C96EB6C00FD20BA /* SuffixWrapper.swift in Sources */,
@@ -262,6 +278,10 @@
 				F1674CAB2C991BEC00D773F9 /* FoodForm.swift in Sources */,
 				F12459F62C9F383300B21B9D /* AnyLayout+.swift in Sources */,
 				F12459F82C9F385F00B21B9D /* ShapeStyle+.swift in Sources */,
+				F1245A002C9FCA2F00B21B9D /* HomeScreen.swift in Sources */,
+				F190A3F52CA1B57700486801 /* AppStorage+.swift in Sources */,
+				F190A3ED2CA1A81800486801 /* SettingScreen.swift in Sources */,
+				F190A3EF2CA1B49600486801 /* Unit.swift in Sources */,
 				F13FC1E22C859CC7003EEBF7 /* FoodPickerScreen.swift in Sources */,
 				F13FC1E02C859CC7003EEBF7 /* AppEntry.swift in Sources */,
 				F12459FD2C9F38BC00B21B9D /* View+.swift in Sources */,
