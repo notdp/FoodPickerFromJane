@@ -32,3 +32,5 @@ struct Food: Equatable, Identifiable {
         return Food(name: "", image: "")
     }
 }
+
+extension Food: Codable {}

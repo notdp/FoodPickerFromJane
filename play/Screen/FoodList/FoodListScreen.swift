@@ -7,10 +7,24 @@
 
 import SwiftUI
 
+extension Array: RawRepresentable where Element: Codable {
+    public init?(rawValue: String) {
+        guard let data = rawValue.data(using: .utf8),
+              let array = try? JSONDecoder().decode(Self.self, from: data) else { return nil }
+        self = array
+    }
+
+    public var rawValue: String {
+        guard let data = try? JSONEncoder().encode(self),
+              let string = String(data: data, encoding: .utf8) else { return "" }
+        return string
+    }
+}
+
 struct FoodListScreen: View {
     @State private var editMode: EditMode = .inactive
 
-    @State private var foods = Food.example
+    @AppStorage(.foodList) private var foods = Food.example
 
     @State private var selectedFoodIds = Set<Food.ID>()
 
