@@ -16,7 +16,6 @@ private enum myField: Int {
     case carb
 }
 
-//
 private extension TextField where Label == Text {
     func focused(_ fieldBinding: FocusState<myField?>.Binding, equals this: myField) -> some View {
         submitLabel(this == .carb ? .done : .next)
@@ -33,9 +32,7 @@ extension FoodListScreen {
         @Environment(\.dismiss) var dismiss
         @FocusState private var focusedField: myField?
         var onSubmit: (Food) -> Void
-        
 
-        
         var body: some View {
             NavigationStack {
                 VStack {
@@ -53,7 +50,7 @@ extension FoodListScreen {
                             }
                     }
                     .padding([.horizontal, .top])
-                    
+
                     Form {
                         LabeledContent("名称") {
                             TextField("必填", text: $food.name)
@@ -63,12 +60,12 @@ extension FoodListScreen {
                             TextField("图示emoji", text: $food.image)
                                 .focused($focusedField, equals: .image)
                         }
-                        buildNumberField(title: "热量", value: $food.calorie, field: .calorie, suffix: "大卡")
-                        buildNumberField(title: "蛋白质", value: $food.protein, field: .protein)
-                        buildNumberField(title: "脂肪", value: $food.fat, field: .fat)
-                        buildNumberField(title: "碳水", value: $food.carb, field: .carb)
+                        buildNumberField(title: "热量", value: $food.$calorie, field: .calorie)
+                        buildNumberField(title: "蛋白质", value: $food.$protein, field: .protein)
+                        buildNumberField(title: "脂肪", value: $food.$fat, field: .fat)
+                        buildNumberField(title: "碳水", value: $food.$carb, field: .carb)
                     }
-                    
+
                     Button {
                         dismiss()
                         onSubmit(food)
@@ -83,16 +80,13 @@ extension FoodListScreen {
                 .multilineTextAlignment(.trailing)
                 .font(.title3)
                 .scrollDismissesKeyboard(.interactively)
-                .toolbar(content:buildKeyboardTools)
+                .toolbar(content: buildKeyboardTools)
             }
         }
-        
-
     }
 }
 
 private extension FoodListScreen.FoodForm {
-    
     var inValidMessage: String? {
         if food.name.isEmpty {
             return "名称不能为空"
@@ -105,22 +99,31 @@ private extension FoodListScreen.FoodForm {
         }
         return .none
     }
-    
+
     var isNotValid: Bool {
         food.name.isEmpty || food.image.isEmpty || food.image.count != 1
     }
-    
-    private func buildNumberField(title: String, value: Binding<Double>, field: myField, suffix: String = "g") -> some View {
+
+    func buildNumberField<Unit: MyUnitProtocol>(title: String, value: Binding<Suffix<Unit>>, field: myField) -> some View {
         LabeledContent(title) {
             HStack {
-                TextField(title, value: value, format: .number.precision(.fractionLength(1)))
+                TextField(title, value: Binding(
+                    get: { value.wrappedValue.wrappedValue },
+                    set: { value.wrappedValue.wrappedValue = $0 }
+                ), format: .number.precision(.fractionLength(1)))
                     .focused($focusedField, equals: field)
                     .keyboardType(.decimalPad)
-                Text(suffix)
+                if Unit.allCases.count <= 1 {
+                    value.unit.wrappedValue.font(.body)
+                } else {
+                    Picker("单位", selection: value.unit) {
+                        ForEach(Unit.allCases)
+                    }.labelsHidden()
+                }
             }
         }
     }
-    
+
     func buildKeyboardTools() -> some ToolbarContent {
         ToolbarItemGroup(placement: .keyboard) {
             Spacer()
@@ -132,14 +135,12 @@ private extension FoodListScreen.FoodForm {
             }
         }
     }
-    
 
-    
     func goPreviousField() {
         guard let rawValue = focusedField?.rawValue else { return }
         focusedField = .init(rawValue: rawValue - 1)
     }
-    
+
     func goNextField() {
         guard let rawValue = focusedField?.rawValue else { return }
         focusedField = .init(rawValue: rawValue + 1)

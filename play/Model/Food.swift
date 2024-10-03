@@ -5,15 +5,16 @@
 //  Created by dp on 9/15/24.
 //
 import Foundation
+import SwiftUI
 
 struct Food: Equatable, Identifiable {
     var id = UUID()
     var name: String
     var image: String
-    @Suffix("千卡") var calorie: Double = .zero
-    @Suffix("g") var carb: Double = .zero
-    @Suffix("g") var fat: Double = .zero
-    @Suffix("g") var protein: Double = .zero
+    @Energy var calorie: Double
+    @Weight var carb: Double
+    @Weight var fat: Double
+    @Weight var protein: Double
 
     static let example = [
         Food(name: "汉堡", image: "🍔", calorie: 200, carb: 30, fat: 10, protein: 10),
@@ -27,9 +28,28 @@ struct Food: Equatable, Identifiable {
         Food(name: "香蕉", image: "🍌", calorie: 105, carb: 27, fat: 0, protein: 1),
         Food(name: "鸡肉", image: "🍗", calorie: 220, carb: 0, fat: 10, protein: 30),
     ]
+}
 
+extension Food {
     static var new: Food {
-        return Food(name: "", image: "")
+        let preferredWeightUnit = MyWeightUnit.getPreferredUnit()
+        let preferredEnergyUnit = MyEnergyUnit.getPreferredUnit()
+
+        return Food(name: "", image: "",
+                    calorie: .init(wrappedValue: .zero, preferredEnergyUnit),
+                    carb: .init(wrappedValue: .zero, preferredWeightUnit),
+                    fat: .init(wrappedValue: .zero, preferredWeightUnit),
+                    protein: .init(wrappedValue: .zero, preferredWeightUnit))
+    }
+
+    private init(id: UUID = UUID(), name: String, image: String, calorie: Double, carb: Double, fat: Double, protein: Double) {
+        self.id = id
+        self.name = name
+        self.image = image
+        _calorie = .init(wrappedValue: calorie, .cal)
+        _carb = .init(wrappedValue: carb, .gram)
+        _fat = .init(wrappedValue: fat, .gram)
+        _protein = .init(wrappedValue: protein, .gram)
     }
 }
 

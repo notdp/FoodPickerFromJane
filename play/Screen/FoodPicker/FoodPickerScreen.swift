@@ -10,23 +10,23 @@ import SwiftUI
 struct FoodPickerScreen: View {
     @State private var selectedFood: Food?
     @State private var shouldShowInfo: Bool = false
-    
+
     let food = Food.example
-    
+
     var body: some View {
-        GeometryReader {proxy in
+        GeometryReader { proxy in
             ScrollView {
                 VStack(spacing: 30) {
                     foodImage
-                    
+
                     Text("今天吃什么").bold()
-                    
+
                     selectedFoodInfoView
-                    
+
                     Spacer().layoutPriority(1)
-                    
+
                     selectFoodButton
-                    
+
                     resetButton
                 }
                 .padding()
@@ -58,7 +58,7 @@ private extension FoodPickerScreen {
         }
         .frame(height: 250)
     }
-    
+
     var foodNameView: some View {
         HStack {
             Text(selectedFood!.name)
@@ -75,7 +75,7 @@ private extension FoodPickerScreen {
             }.buttonStyle(.plain)
         }
     }
-    
+
     var foodDetailView: some View {
         VStack {
             if shouldShowInfo {
@@ -85,14 +85,14 @@ private extension FoodPickerScreen {
                         Text("脂肪")
                         Text("碳水")
                     }.frame(minWidth: 60)
-                    
+
                     Divider().gridCellUnsizedAxes(.horizontal)
                         .padding(.horizontal, -10)
-                    
+
                     GridRow {
-                        Text(selectedFood!.$protein)
-                        Text(selectedFood!.$fat)
-                        Text(selectedFood!.$carb)
+                        Text(selectedFood!.$protein.description)
+                        Text(selectedFood!.$fat.description)
+                        Text(selectedFood!.$carb.description)
                     }
                 }
                 .font(.title3)
@@ -107,17 +107,17 @@ private extension FoodPickerScreen {
         .maxWidth()
         .clipped()
     }
-    
+
     @ViewBuilder var selectedFoodInfoView: some View {
         if let selectedFood {
             foodNameView
-            
-            Text("热量: \(selectedFood.$calorie)").font(.title2)
-            
+
+            Text("热量: \(selectedFood.$calorie.description)").font(.title2)
+
             foodDetailView
         }
     }
-    
+
     var selectFoodButton: some View {
         Button {
             // 随机选择一个食物
@@ -129,7 +129,7 @@ private extension FoodPickerScreen {
         }
         .padding(.bottom, -15)
     }
-    
+
     var resetButton: some View {
         Button {
             selectedFood = .none
@@ -138,7 +138,7 @@ private extension FoodPickerScreen {
             Text("重置").frame(width: 200)
         }.buttonStyle(.bordered)
     }
-    
+
     init(selectedFood: Food) {
         _selectedFood = State(wrappedValue: selectedFood)
     }
